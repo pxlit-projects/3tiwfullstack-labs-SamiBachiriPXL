@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/department")
 @RequiredArgsConstructor
@@ -32,5 +34,11 @@ public class DepartmentController {
     @GetMapping("/{organizationId}")
     public ResponseEntity getDepartmentsByOrganization(@PathVariable Long organizationId){
         return new ResponseEntity(departmentService.getDepartmentsByOrganization(organizationId), HttpStatus.OK);
+    }
+
+    @GetMapping("/organization/{organizationId}/with-employees")
+    public ResponseEntity getDepartmentsByOrganizationWithEmployees(@PathVariable Long organizationId) {
+        List<Department> departments = departmentService.getDepartmentsByOrganizationWithEmployees(organizationId);
+        return ResponseEntity.ok(departments);
     }
 }

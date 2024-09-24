@@ -11,6 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DepartmentService implements IDepartmentService{
     private final DepartmentRepository departmentRepository;
+    private final EmployeeService employeeService;
 
     @Override
     public List<Department> getAllDepartments() {
@@ -30,5 +31,15 @@ public class DepartmentService implements IDepartmentService{
     @Override
     public List<Department> getDepartmentsByOrganization(Long organizationId) {
         return departmentRepository.findByOrganizationId(organizationId);
+    }
+
+    @Override
+    public List<Department> getDepartmentsByOrganizationWithEmployees(Long organizationId) {
+        return departmentRepository.findByOrganizationId(organizationId)
+                .stream()
+                .map(department -> {
+                    department.setEmployees(employeeService.getEmployeesByDepartment(department.getId())); // Assuming a getEmployees method in Department
+                    return department;
+                }).toList();
     }
 }
