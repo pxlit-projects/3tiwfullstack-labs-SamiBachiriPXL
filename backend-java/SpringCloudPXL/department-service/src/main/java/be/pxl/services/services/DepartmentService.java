@@ -38,7 +38,7 @@ public class DepartmentService implements IDepartmentService{
         return departmentRepository.findByOrganizationId(organizationId)
                 .stream()
                 .map(department -> {
-                    department.setEmployees(employeeService.getEmployeesByDepartment(department.getId())); // Assuming a getEmployees method in Department
+                    department.setEmployees(employeeService.getEmployeesByDepartment(department.getId()).stream().map(employee -> employeeService.mapToEmployee(employee)).toList());
                     return department;
                 }).toList();
     }

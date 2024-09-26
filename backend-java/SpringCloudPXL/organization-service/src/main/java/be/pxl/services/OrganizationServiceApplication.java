@@ -4,14 +4,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Hello world!
- *
+ * OrganizationServiceApplication
  */
 @SpringBootApplication
-public class DepartmentServiceApplication
+public class OrganizationServiceApplication
 {
     public static void main( String[] args )
     {
-        SpringApplication.run(DepartmentServiceApplication.class, args);
+        SpringApplication.run(OrganizationServiceApplication.class, args);
     }
 }

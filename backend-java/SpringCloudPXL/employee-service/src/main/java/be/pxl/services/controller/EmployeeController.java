@@ -1,6 +1,7 @@
 package be.pxl.services.controller;
 
 import be.pxl.services.domain.Employee;
+import be.pxl.services.domain.dto.EmployeeRequest;
 import be.pxl.services.services.IEmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,8 @@ public class EmployeeController {
     }
 
     @PostMapping
-    public ResponseEntity addEmployee(@RequestBody Employee employee){
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity addEmployee(@RequestBody EmployeeRequest employee){
         employeeService.addEmployee(employee);
         return new ResponseEntity(HttpStatus.CREATED);
     }
