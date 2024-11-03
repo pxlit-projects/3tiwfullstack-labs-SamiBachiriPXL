@@ -28,6 +28,8 @@
         <module>organization-service</module>
         <module>notification-service</module>
         <module>discovery-service</module>
+        <module>config-server</module>
+        <module>gateway-service</module>
     </modules>
     <scm>
         <connection/>
